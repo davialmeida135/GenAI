@@ -67,6 +67,31 @@ Evolução da perda dos modelos
 
 ## Com gerador simplificado
 
+```python
+Gerador(
+  (net): Sequential(
+    (0): Linear(in_features=100, out_features=6272, bias=True)
+    (1): Unflatten(dim=1, unflattened_size=(32, 14, 14))
+    (2): ConvTranspose2d(32, 1, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), output_padding=(1, 1))
+    (3): ReLU(inplace=True)
+    (4): Tanh()
+  )
+)
+Discriminador(
+  (net): Sequential(
+    (0): Conv2d(1, 64, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+    (1): LeakyReLU(negative_slope=0.2)
+    (2): Dropout(p=0.4, inplace=False)
+    (3): Conv2d(64, 128, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+    (4): LeakyReLU(negative_slope=0.2)
+    (5): Dropout(p=0.4, inplace=False)
+    (6): Flatten(start_dim=1, end_dim=-1)
+    (7): Linear(in_features=6272, out_features=1, bias=True)
+    (8): Sigmoid()
+  )
+)
+```
+
 ## Com discriminador simplificado
 
 ## Com learning rate exagerado
