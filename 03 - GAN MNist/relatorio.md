@@ -63,7 +63,11 @@ Imagens aleatórias
 
 Interpolação do espaço latente
 
+![alt text](img/base_interp.png)
+
 Evolução da perda dos modelos
+
+![alt text](img/base_loss.png)
 
 ## Com gerador simplificado
 
@@ -92,6 +96,18 @@ Discriminador(
 )
 ```
 
+Imagens aleatórias
+
+![alt text](img/badgen_random.png)
+
+Interpolação do espaço latente
+
+![alt text](img/badgen_interp.png)
+
+Evolução da perda dos modelos
+
+![alt text](img/badgen_loss.png)
+
 ## Com discriminador simplificado
 
 ```python
@@ -118,14 +134,89 @@ Discriminador(
   )
 )
 ```
+
+Imagens aleatórias
+
+![alt text](img/baddisc_random.png)
+
+Interpolação do espaço latente
+
+![alt text](img/baddisc_interp.png)
+
+Evolução da perda dos modelos
+
+![alt text](img/baddisc_loss.png)
+
 ## Com learning rate exagerado (0.5)
 ### Gerador
 
+Imagens aleatórias
+
+![alt text](img/high_gen_random.png)
+
+Interpolação do espaço latente
+
+![alt text](img/high_gen_interp.png)
+
+Evolução da perda dos modelos
+
+![alt text](img/high_gen_loss.png)
+
 ### Discriminador
+
+Imagens aleatórias
+
+![alt text](img/high_disc_random.png)
+
+Interpolação do espaço latente
+
+![alt text](img/high_disc_interp.png)
+
+Evolução da perda dos modelos
+
+![alt text](img/high_disc_loss.png)
 
 ## Com learning rate muito pequeno (0.00001)
 ### Gerador
 
+Imagens aleatórias
+
+![alt text](img/low_gen_random.png)
+
+Interpolação do espaço latente
+
+![alt text](img/low_gen_random.png)
+
+Evolução da perda dos modelos
+
+![alt text](img/low_gen_random.png)
+
+
 ### Discriminador
 
+Imagens aleatórias
+
+![alt text](img/low_disc_random.png)
+
+Interpolação do espaço latente
+
+![alt text](img/low_disc_interp.png)
+
+Evolução da perda dos modelos
+
+![alt text](img/low_disc_loss.png)
+
+
 ## Utilizando otimizador Adam
+
+Imagens aleatórias
+
+![alt text](img/adam_random.png)
+
+Interpolação do espaço latente
+
+![alt text](img/adam_interp.png)
+
+Evolução da perda dos modelos
+
+![alt text](img/adam_loss.png)
