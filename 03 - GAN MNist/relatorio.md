@@ -118,8 +118,14 @@ Discriminador(
   )
 )
 ```
-## Com learning rate exagerado
+## Com learning rate exagerado (0.5)
+### Gerador
 
-## Com learning rate muito pequeno
+### Discriminador
+
+## Com learning rate muito pequeno (0.00001)
+### Gerador
+
+### Discriminador
 
 ## Utilizando otimizador Adam
