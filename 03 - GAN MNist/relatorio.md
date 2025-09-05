@@ -15,15 +15,10 @@ por exemplo:
 - reduzindo o número de kernels por camada
 
 3. Varie as taxas de aprendizado do gerador e do discriminador de forma independente.
-0.1 -> 0.001 -> 0.00001
 
 4. Teste um otimizador adicional (ex.: SGD ou Adam).
 
-Mudar os dois para Adam
-
-5. Realize a interpolação entre dois vetores latentes.
-
-## GAN Base
+# 0. GAN Base
 
 ```python
 Gerador(
@@ -69,7 +64,7 @@ Evolução da perda dos modelos
 
 ![alt text](img/base_loss.png)
 
-## Com gerador simplificado
+# 1 Com gerador simplificado
 
 ```python
 Gerador(
@@ -108,7 +103,7 @@ Evolução da perda dos modelos
 
 ![alt text](img/badgen_loss.png)
 
-## Com discriminador simplificado
+# 2. Com discriminador simplificado
 
 ```python
 Gerador(
@@ -147,8 +142,8 @@ Evolução da perda dos modelos
 
 ![alt text](img/baddisc_loss.png)
 
-## Com learning rate exagerado (0.5)
-### Gerador
+# 3.1 Com learning rate exagerado (0.5)
+## 3.1.1 Gerador
 
 Imagens aleatórias
 
@@ -162,7 +157,7 @@ Evolução da perda dos modelos
 
 ![alt text](img/high_gen_loss.png)
 
-### Discriminador
+## 3.1.2 Discriminador
 
 Imagens aleatórias
 
@@ -176,8 +171,8 @@ Evolução da perda dos modelos
 
 ![alt text](img/high_disc_loss.png)
 
-## Com learning rate muito pequeno (0.00001)
-### Gerador
+# 3.2 Com learning rate muito pequeno (0.00001)
+## 3.2.1 Gerador
 
 Imagens aleatórias
 
@@ -185,14 +180,13 @@ Imagens aleatórias
 
 Interpolação do espaço latente
 
-![alt text](img/low_gen_random.png)
+![alt text](img/low_gen_interp.png)
 
 Evolução da perda dos modelos
 
-![alt text](img/low_gen_random.png)
+![alt text](img/low_gen_loss.png)
 
-
-### Discriminador
+## 3.2.2 Discriminador
 
 Imagens aleatórias
 
@@ -206,8 +200,7 @@ Evolução da perda dos modelos
 
 ![alt text](img/low_disc_loss.png)
 
-
-## Utilizando otimizador Adam
+# 4. Utilizando otimizador Adam
 
 Imagens aleatórias
 
