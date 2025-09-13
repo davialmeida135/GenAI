@@ -92,7 +92,7 @@ class Critico(nn.Module):
 
 ## Treinamento
 
-O treinamento é muito similar a uma GAN comum, porém o cálculo da perda é feito por meio da diferença entre as médias
+O treinamento é muito similar a uma GAN comum, porém o cálculo da perda é feito por meio da diferença entre as médias. Abaixo está descrito o código de treinamento para uma época.
 
 ```python
 for batch_idx, (dados_reais, rotulos_reais) in enumerate(dataloader):
@@ -114,20 +114,20 @@ for batch_idx, (dados_reais, rotulos_reais) in enumerate(dataloader):
         dados_falsos = gerador(z, rotulos_reais_one_hot)
 
         # Avalia dados reais (imagem real + rótulo real)
-        saida_reais = discriminador(dados_reais, rotulos_reais_one_hot)
+        saida_reais = crítico(dados_reais, rotulos_reais_one_hot)
 
         # Avalia dados falsos (imagem gerada + rótulo real)
-        saida_falsos = discriminador(dados_falsos, rotulos_reais_one_hot)
+        saida_falsos = crítico(dados_falsos, rotulos_reais_one_hot)
 
-        # Perda do discriminador: soma das perdas para dados reais e falsos
-        perda_discriminador = saida_falsos.mean() - saida_reais.mean()
+        # Perda do crítico: soma das perdas para dados reais e falsos
+        perda_crítico = saida_falsos.mean() - saida_reais.mean()
 
-        opt_discriminador.zero_grad()
-        perda_discriminador.backward()
-        opt_discriminador.step()
+        opt_crítico.zero_grad()
+        perda_crítico.backward()
+        opt_crítico.step()
 
-        # Clipping dos pesos do discriminador para satisfazer Lipschitz
-        for p in discriminador.parameters():
+        # Clipping dos pesos do crítico para satisfazer Lipschitz
+        for p in crítico.parameters():
             p.data.clamp_(-clip_value, clip_value)
 
     # GERADOR
@@ -136,10 +136,10 @@ for batch_idx, (dados_reais, rotulos_reais) in enumerate(dataloader):
     # Gera dados falsos novamente (com os rótulos reais do batch)
     dados_falsos = gerador(z, rotulos_reais_one_hot)
 
-    # Faz o discriminador avaliar estes dados falsos
-    saida_falsos = discriminador(dados_falsos, rotulos_reais_one_hot)
+    # Faz o crítico avaliar estes dados falsos
+    saida_falsos = crítico(dados_falsos, rotulos_reais_one_hot)
 
-    # Perda do gerador: queremos que o discriminador ache que são reais
+    # Perda do gerador: queremos que o crítico ache que são reais
     perda_gerador = -saida_falsos.mean()
 
     # Otimiza o gerador
@@ -150,4 +150,37 @@ for batch_idx, (dados_reais, rotulos_reais) in enumerate(dataloader):
 
 ## Resultados
 
-![alt text](treino_ruidoso/random.png)
+Utilizando as seguintes configurações de treino:
+
+```python
+lr_gerador = 1e-5       
+lr_crítico = 1e-5  
+optimizador_gerador = torch.optim.RMSprop(modelo_gerador.parameters(), lr=lr_gerador)
+optimizador_crítico = torch.optim.RMSprop(modelo_crítico.parameters(), lr=lr_crítico)
+epochs=50
+n_critic=5,
+clip_value=0.01,
+```
+Obtivemos a seguinte progressão de perda ao longo das 50 épocas
+
+![alt text](treino_legal/loss.png)
+
+### Exemplos de imagens geradas
+
+![alt text](treino_legal/random.png)
+
+### Interpolação entre classes com z fixo
+
+![alt text](treino_legal/z_fixo.png)
+
+### Interpolação entre vetores latentes com classe fixa 
+
+![alt text](treino_legal/c_fixo.png)
+
+### Interpolação entre vetores latentes e classes
+
+![alt text](treino_legal/interp.png)
+
+### Geração de diferentes classes com z fixo
+
+![alt text](treino_legal/classes_z_fixo.png)
