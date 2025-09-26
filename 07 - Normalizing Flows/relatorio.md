@@ -41,3 +41,11 @@
     - Reporte e comente os resultados no relatório.
 
     - Incluir gráficos gerados.
+
+# 1. Dataset círculos
+
+![alt text](img/losses_circulos.png)
+
+# 2. Dataset híbrido
+
+![alt text](img/losses_hibrido.png)
