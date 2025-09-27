@@ -49,7 +49,7 @@ num_camadas_acoplamento=2
 learning_rate = 1e-1
 weight_decay = 1e-2
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
-
+11
 n_epochs=100
 ```
 

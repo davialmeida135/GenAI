@@ -85,7 +85,7 @@ class Gerador(nn.Module):
 
 Após analisar os resultados, é possível perceber dois comportamentos principais:
 - Ao aumentar o valor do parâmetro `k`, a precisão e a revocação tendem a aumentar, uma vez que a área dos manifolds aumenta.
-- Tanto a precisão quanto a revocação tendem a diminuir ao aumentar-se o número de pontos gerados.
+- Tanto a precisão quanto a revocação tendem a diminuir quando aumenta-se o número de pontos gerados.
 
 ## GanFC
 ![alt text](img/fcgan.png)
