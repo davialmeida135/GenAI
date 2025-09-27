@@ -66,6 +66,8 @@ Evolução da perda dos modelos
 
 # 1 Com gerador simplificado
 
+Geração muito ruim. Uma vez que o discriminador rapidamente alcança erro próximo de 0, o aprendizado do gerador se torna muito difícil.
+
 ```python
 Gerador(
   (net): Sequential(
@@ -104,6 +106,8 @@ Evolução da perda dos modelos
 ![alt text](img/badgen_loss.png)
 
 # 2. Com discriminador simplificado
+
+Apesar da simplicidade do discriminador, ele ainda consegue ter algum discernimento entre imagens verdadeiras e falsas, contribuindo com o treinamento do gerador e gerando um resultado aceitável. 
 
 ```python
 Gerador(
@@ -174,6 +178,8 @@ Evolução da perda dos modelos
 # 3.2 Com learning rate muito pequeno (0.00001)
 ## 3.2.1 Gerador
 
+Discriminador aprende muito mais rápido que o gerador, alcançando uma loss muito baixa e dificultando o treino do gerador.
+
 Imagens aleatórias
 
 ![alt text](img/low_gen_random.png)
@@ -187,6 +193,8 @@ Evolução da perda dos modelos
 ![alt text](img/low_gen_loss.png)
 
 ## 3.2.2 Discriminador
+
+Similar ao resultado do discriminador simplificado, onde o discriminador, apesar de ter seru aprendizado prejudicado, ainda consegue ter um discernimento e contribuir com o treino do gerador. 
 
 Imagens aleatórias
 
