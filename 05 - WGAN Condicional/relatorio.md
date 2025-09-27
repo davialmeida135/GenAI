@@ -75,17 +75,13 @@ class Critico(nn.Module):
             nn.Dropout(0.4),
             nn.Flatten(),
 
-            # Camada totalmente conectada sem função de ativação ao fim
             nn.Linear(7 * 7 * 128, 1),
         )
 
     def forward(self, imagem, rotulos_one_hot):
         # imagem: (B, 1, H, W) | rotulos_one_hot: (B, C)
         _, _, H, W = imagem.shape
-        # (B, C, 1, 1) -> (B, C, H, W)  [expand cria uma view]
-        # Cria um tensor do tamanho da imagem, preenchido com os valores do rótulo one-hot, onde cada canal corresponde a um rótulo
         mapa_rotulo = rotulos_one_hot[:, :, None, None].expand(-1, -1, H, W)
-        # (B, 1+C, H, W)  [concatenar a imagem com o mapa de rótulo no eixo de canais]
         entrada = torch.cat((imagem, mapa_rotulo), dim=1)
         return self.rede_neural(entrada)
 ```
@@ -102,7 +98,6 @@ for batch_idx, (dados_reais, rotulos_reais) in enumerate(dataloader):
 
     # Converte os rótulos reais para one-hot
     rotulos_reais_one_hot = F.one_hot(rotulos_reais, num_classes=num_classes).float()
-
     rotulos_reais_one_hot = rotulos_reais_one_hot.to(device)
 
     # CRÍTICO (DISCRIMINADOR)
@@ -110,13 +105,10 @@ for batch_idx, (dados_reais, rotulos_reais) in enumerate(dataloader):
         
         z = torch.randn((batch_size, z_dim), device=device)
 
-        # Gera dados falsos USANDO OS MESMOS RÓTULOS REAIS (matching label approach)
         dados_falsos = gerador(z, rotulos_reais_one_hot)
 
-        # Avalia dados reais (imagem real + rótulo real)
         saida_reais = crítico(dados_reais, rotulos_reais_one_hot)
 
-        # Avalia dados falsos (imagem gerada + rótulo real)
         saida_falsos = crítico(dados_falsos, rotulos_reais_one_hot)
 
         # Perda do crítico: soma das perdas para dados reais e falsos
@@ -133,16 +125,13 @@ for batch_idx, (dados_reais, rotulos_reais) in enumerate(dataloader):
     # GERADOR
     z = torch.randn((batch_size, z_dim), device=device)
 
-    # Gera dados falsos novamente (com os rótulos reais do batch)
     dados_falsos = gerador(z, rotulos_reais_one_hot)
 
-    # Faz o crítico avaliar estes dados falsos
     saida_falsos = crítico(dados_falsos, rotulos_reais_one_hot)
 
     # Perda do gerador: queremos que o crítico ache que são reais
     perda_gerador = -saida_falsos.mean()
 
-    # Otimiza o gerador
     opt_gerador.zero_grad()
     perda_gerador.backward()
     opt_gerador.step()
@@ -161,7 +150,7 @@ epochs=50
 n_critic=5,
 clip_value=0.01,
 ```
-Obtivemos a seguinte progressão de perda ao longo das 50 épocas
+Obtivemos a seguinte progressão de perda ao longo das 50 épocas. No geral a convergência aparenta ter sido bem rápida e a qualidade das imagens geradas aceitável para a maioria das classes, dentro da capacidade do modelo.
 
 ![alt text](treino_legal/loss.png)
 
@@ -170,6 +159,8 @@ Obtivemos a seguinte progressão de perda ao longo das 50 épocas
 ![alt text](treino_legal/random.png)
 
 ### Interpolação entre classes com z fixo
+
+Transição entre calça e tênis bem gerada
 
 ![alt text](treino_legal/z_fixo.png)
 
@@ -182,5 +173,7 @@ Obtivemos a seguinte progressão de perda ao longo das 50 épocas
 ![alt text](treino_legal/interp.png)
 
 ### Geração de diferentes classes com z fixo
+
+Com z fixo, algumas classes geram objetos muito parecidos.
 
 ![alt text](treino_legal/classes_z_fixo.png)
