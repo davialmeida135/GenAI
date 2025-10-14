@@ -21,7 +21,9 @@
 # Autoencoder determinístico convolucional
 
 ## z = 2
+![alt text](image.png)
 
+![alt text](image-1.png)
 ## z = 30
 
 ## z = 64
