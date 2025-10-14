@@ -24,7 +24,7 @@
 ![alt text](image.png)
 
 ![alt text](image-1.png)
-## z = 30
+## z = 32
 
 ## z = 64
 
@@ -40,6 +40,6 @@
 
 ## z = 2
 
-## z = 30
+## z = 32
 
 ## z = 64
