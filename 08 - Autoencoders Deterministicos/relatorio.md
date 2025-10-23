@@ -2,8 +2,8 @@
 
 1. Replique o experimeto com o conjunto de dados `MNIST` do Pytorch:
     ``` python
-    train_full  = datasets.MNIST(root="data", train=True, download=True)     # carrega conjunto de treinamento
-    test_ds     = datasets.MNIST(root="data", train=False, download=True)    # carrega conjunto de teste
+    train_full  = datasets.MNIST(root="data", train=True, download=True) 
+    test_ds     = datasets.MNIST(root="data", train=False, download=True)
     ```
 
   e os seguintes Autoencoders: convolucional, esparso e por remoção de ruído. Para cada modelo teste 3 valores distintos para a dimensionalidade do espaço latente.
@@ -21,25 +21,44 @@
 # Autoencoder determinístico convolucional
 
 ## z = 2
-![alt text](image.png)
+![alt text](img/gen_conv_2.png)
 
-![alt text](image-1.png)
+![alt text](img/loss_conv_2.png)
 ## z = 32
 
-## z = 64
+![alt text](img/gen_conv_32.png)
 
+![alt text](img/loss_conv_2.png)
+## z = 64
+![alt text](img/gen_conv_64.png)
+
+![alt text](img/gen_conv_64.png)
 # Autoencoder determinístico esparso
 
 ## z = 64
+![alt text](img/gen_sparse_64.png)
 
+![alt text](img/loss_sparse_64.png)
 ## z = 300
+![alt text](img/gen_sparse_300.png)
 
+![alt text](img/loss_sparse_300.png)
 ## z = 600
+![alt text](img/gen_sparse_600.png)
+
+![alt text](img/loss_sparse_600.png)
 
 # Autoencoder determinístico de remoção de ruído
 
 ## z = 2
+![alt text](img/gen_drop_2.png)
 
+![alt text](img/loss_drop_2.png)
 ## z = 32
+![alt text](img/gen_drop_32.png)
 
+![alt text](img/loss_drop_32.png)
 ## z = 64
+![alt text](img/gen_drop_64.png)
+
+![alt text](img/loss_drop_64.png)
