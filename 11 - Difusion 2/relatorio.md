@@ -35,6 +35,25 @@ train_dl = DataLoader(
     batch_size=BATCH_SIZE,
     shuffle=True,
     drop_last=True,
-    num_workers=4
+    num_workers=4 
 )
 ```
+
+# Variação de T
+
+![alt text](img/treino1/t1.png)
+![alt text](img/treino1/t2.png)
+![alt text](img/treino1/t3.png)
+![alt text](img/treino1/t5.png)
+![alt text](img/treino1/t20.png)
+![alt text](img/treino1/t100.png)
+
+# Interpolação no espaço latente
+
+![alt text](img/treino1/3inter5.png)
+
+![alt text](img/treino1/5inter0.png)
+
+![alt text](img/treino1/7inter0.png)
+
+![alt text](img/treino1/inter4.png)
