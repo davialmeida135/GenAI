@@ -12,6 +12,7 @@ Faça as alterações necessárias no código para carregar a base de dados MNIS
 2. Observe e reporte como o número de passos T afeta a geração de novas imagens.
 3. Interpole entre duas imagens no espaço latente e reporte os resultados. Repita o procedimento para 4 pares de imagens.
 
+# Carregamento dos dados
 
 O dataset MNIST foi carregado da seguinte forma:
 ```python
@@ -40,6 +41,7 @@ train_dl = DataLoader(
 ```
 
 # Variação de T
+Ao observar a geração de novas amostras com diferente números de passos T, foi possível perceber que, para este simples conjunto de dados, duas etapas de difusão são suficientes para gerar amostras com um realismo aceitável. O aumento no valor T, no entanto, melhora a definição das  reconstruções.
 
 ![alt text](img/treino1/t1.png)
 ![alt text](img/treino1/t2.png)
@@ -49,6 +51,7 @@ train_dl = DataLoader(
 ![alt text](img/treino1/t100.png)
 
 # Interpolação no espaço latente
+No geral as interpolações ficaram bem coerentes. A última interpolação apresentada, no entanto, parece ter passado pelo número 3 no caminho intermediário entre 0 e 4.
 
 ![alt text](img/treino1/3inter5.png)
 
