@@ -32,10 +32,13 @@ self.fc = nn.Linear(
 ```
 
 ### Prompts utilizados
+Para o primeiro prompt, as gerações com baixas temperaturas apresentaram uma boa estrutura sintática, mas semânticamente não fizeram sentido. A geração com temperatura alta acabou por ser a que mas fez sentido no contexto da query, apesar de ter um número '5' solto no meio da frase.
 - "recipe for roasted vegetables"
     - Temp = 0: `in a large bowl , combine the sugar and salt`
     - Temp = 0.2: `in a bowl whisk together the flour , the baking`
     - Temp = 1: `preheat the oven to 350°f . 5 . bake for`
+
+Já para este prompt, o resultado foi inverso. As respostas de temperatura mais baixa foram as que mais fizeram sentido para o contexto. O texto gerado com temperatura 1 não fez o menor sentido para a receita proposta.
 
 - "recipe for mac and cheese"
     - Temp = 0: `preheat oven to 350°f . butter a 9 -`
@@ -61,11 +64,13 @@ self.fc = nn.Linear(
 )
 ```
 ### Prompts utilizados
+A GRU se mostrou bem melhor no primeiro prompt, com todas as respostas, mesmo que diferentes, fazendo algum sentido para a receita sugerida.
 - "recipe for roasted vegetables"
     - Temp = 0: `preheat oven to 450°f . toss potatoes with 1 /`
     - Temp = 0.2: `preheat oven to 450°f . toss potatoes with 1 /`
     - Temp = 1: `fill a large saucepan with 1 water and drain well`
 
+Já para esta receita, as respostas da GRU não fizeram o menor sentido em nenhum dos testes.
 - "recipe for mac and cheese"
     - Temp = 0: `combine all ingredients in a cocktail shaker and shake`
     - Temp = 0.2: `combine all ingredients in a cocktail shaker and shake`
@@ -102,6 +107,12 @@ self.fc = nn.Linear(
 
 ## Perplexity
 
-- RNN: 13.10
-- LSTM: 10.31
-- GRU: 10.31
+| Modelo | Perplexity | Melhoria vs RNN |
+|--------|-----------|-----------------|
+| **RNN Clássica** | 13.10 | - (baseline) |
+| **GRU** | 10.31 | 21.3% melhor |
+| **LSTM** | 10.31 | 21.3% melhor |
+
+Embora GRU e LSTM tenham perplexity idêntica, a qualidade percebida varia:
+- **LSTM:** Gerações mais estruturadas (numeração, passos lógicos)
+- **GRU:** Gerações funcionais, mas ocasionalmente comete erros semânticos, como "cocktail shaker"
